@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Demo data for cham_cong -->
+        <record id="cham_cong_demo_1" model="cham_cong">
+            <field name="nhan_vien_id" ref="nhan_su.nhan_vien_demo_1" />
+            <field name="ngay">2024-01-15</field>
+            <field name="gio_vao">8.0</field>
+            <field name="gio_ra">17.0</field>
+            <field name="ghi_chu">Bình thường</field>
+        </record>
+
+        <record id="cham_cong_demo_2" model="cham_cong">
+            <field name="nhan_vien_id" ref="nhan_su.nhan_vien_demo_1" />
+            <field name="ngay">2024-01-16</field>
+            <field name="gio_vao">8.5</field>
+            <field name="gio_ra">17.0</field>
+            <field name="ghi_chu">Đi muộn 30 phút</field>
+        </record>
+
+        <record id="cham_cong_demo_3" model="cham_cong">
+            <field name="nhan_vien_id" ref="nhan_su.nhan_vien_demo_2" />
+            <field name="ngay">2024-01-15</field>
+            <field name="gio_vao">8.0</field>
+            <field name="gio_ra">16.5</field>
+            <field name="ghi_chu">Về sớm 30 phút</field>
+        </record>
+    </data>
+</odoo>

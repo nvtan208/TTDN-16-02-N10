@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu gốc của module Chấm Công -->
+    <menuitem
+        id="cham_cong_root_menu"
+        name="Chấm Công"
+        sequence="0"/>
+
+    <!-- Menu con -->
+    <menuitem
+        id="cham_cong_menu"
+        name="Danh sách chấm công"
+        parent="cham_cong_root_menu"
+        action="cham_cong_action"
+        sequence="1"/>
+
+</odoo>

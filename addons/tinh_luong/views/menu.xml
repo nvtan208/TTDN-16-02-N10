@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu gốc của module Tính Lương -->
+    <menuitem
+        id="tinh_luong_root_menu"
+        name="Tính Lương"
+        sequence="0"/>
+
+    <!-- Menu con -->
+    <menuitem
+        id="tinh_luong_menu"
+        name="Bảng tính lương"
+        parent="tinh_luong_root_menu"
+        action="tinh_luong_action"
+        sequence="1"/>
+
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cham_cong_user,cham_cong.user,model_cham_cong,base.group_user,1,1,1,1
+access_cham_cong_manager,cham_cong.manager,model_cham_cong,base.group_user,1,1,1,1

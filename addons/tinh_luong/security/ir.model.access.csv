@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+tinh_luong_manager_access,Tinh Luong Manager,tinh_luong.model_tinh_luong,,1,1,1,1
+tinh_luong_user_access,Tinh Luong User,tinh_luong.model_tinh_luong,,1,0,0,0

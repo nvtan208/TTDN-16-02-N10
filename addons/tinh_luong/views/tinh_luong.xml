@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form view for TinhLuong -->
+    <record id="tinh_luong_form_view" model="ir.ui.view">
+        <field name="name">tinh_luong.form</field>
+        <field name="model">tinh_luong</field>
+        <field name="arch" type="xml">
+            <form string="Tính Lương">
+                <header>
+                    <button name="action_chot_luong" type="object" string="Chốt Lương" class="btn-primary" attrs="{'invisible': [('trang_thai', '!=', 'nhap')]}" />
+                    <field name="trang_thai" widget="statusbar" options="{'clickable': False}" />
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Thông tin">
+                            <field name="nhan_vien_id" attrs="{'readonly': [('trang_thai', '=', 'da_chot')] }" />
+                            <field name="thang" widget="date" attrs="{'readonly': [('trang_thai', '=', 'da_chot')] }" />
+                            <field name="luong_co_ban" widget="monetary" />
+                            <field name="an" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1"/>
+                            <field name="xang" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1"/>
+                        </group>
+                        <group string="Các thành phần lương">
+                            <field name="thuong" widget="monetary" options="{'currency_field': 'company_id'}" attrs="{'readonly': [('trang_thai', '=', 'da_chot')]}" />
+                            <field name="phat" widget="monetary" options="{'currency_field': 'company_id'}" attrs="{'readonly': [('trang_thai', '=', 'da_chot')]}" />
+
+                        </group>
+                    </group>
+                    
+                    <group string="Chi tiết giờ làm">
+                        <group>
+                            <field name="tong_gio_lam" />
+                            <field name="so_cong" />
+                        </group>
+                    </group>
+                    
+                    <group string="Kết quả tính lương">
+                        <group>
+                            <field name="luong_co_ban" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="luong" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="an" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="xang" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="thuong" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="ot" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="tru_muon" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="tru_vesom" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="phat" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="luong_gop" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="bao_hiem" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                            <field name="tong" widget="monetary" options="{'currency_field': 'company_id'}" readonly="1" />
+                        </group>
+                    </group>
+                    
+                    <group string="Ghi chú">
+                        <field name="ghi_chu" nolabel="1" colspan="2" attrs="{'readonly': [('trang_thai', '=', 'da_chot')]}" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for TinhLuong -->
+    <record id="tinh_luong_tree_view" model="ir.ui.view">
+        <field name="name">tinh_luong.tree</field>
+        <field name="model">tinh_luong</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách tính lương">
+                <field name="thang" />
+                <field name="nhan_vien_id" />
+                <field name="trang_thai" widget="badge" />
+                <field name="luong_co_ban" />
+                <field name="an" />
+                <field name="xang" />
+                <field name="tong_gio_lam" />
+                <field name="so_cong" />
+                <field name="thuong" />
+                <field name="ot" />
+                <field name="luong_gop" />
+                <field name="bao_hiem" />
+                <field name="tong" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search view for TinhLuong -->
+    <record id="tinh_luong_search_view" model="ir.ui.view">
+        <field name="name">tinh_luong.search</field>
+        <field name="model">tinh_luong</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm tính lương">
+                <field name="thang" />
+                <field name="nhan_vien_id" />
+                <field name="trang_thai" />
+                <separator />
+                <filter name="nhap" string="Nháp" domain="[('trang_thai', '=', 'nhap')]" />
+                <filter name="da_chot" string="Đã chốt" domain="[('trang_thai', '=', 'da_chot')]" />
+                <separator />
+                <filter name="filter_current_month" string="Tháng hiện tại" domain="['&amp;', ('thang', '&gt;=', context_today().replace(day=1)), ('thang', '&lt;', (context_today() + relativedelta(months=1)).replace(day=1))]" />
+                <group expand="0" string="Nhóm theo">
+                    <filter name="group_by_employee" string="Nhân viên" context="{'group_by': 'nhan_vien_id'}" />
+                    <filter name="group_by_trang_thai" string="Trạng thái" context="{'group_by': 'trang_thai'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for TinhLuong -->
+    <record id="tinh_luong_action" model="ir.actions.act_window">
+        <field name="name">Tính Lương</field>
+        <field name="res_model">tinh_luong</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0), (0, 0, {'view_mode': 'tree', 'view_id': ref('tinh_luong_tree_view')}), (0, 0, {'view_mode': 'form', 'view_id': ref('tinh_luong_form_view')})]" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo bảng tính lương mới
+            </p>
+            <p>
+                Module quản lý tính lương nhân viên:<br/>
+            </p>
+        </field>
+    </record>
+
+</odoo>

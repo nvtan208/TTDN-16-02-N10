@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Demo data for tinh_luong -->
+        <record id="tinh_luong_demo_1" model="tinh_luong">
+            <field name="nhan_vien_id" ref="nhan_su.nhan_vien_demo_1" />
+            <field name="thang">2026-01</field>
+            <field name="thuong">500000</field>
+            <field name="phat">100000</field>
+            <field name="ghi_chu">Lương tháng 1 năm 2026</field>
+        </record>
+
+        <record id="tinh_luong_demo_2" model="tinh_luong">
+            <field name="nhan_vien_id" ref="nhan_su.nhan_vien_demo_2" />
+            <field name="thang">2026-01</field>
+            <field name="thuong">300000</field>
+            <field name="phat">50000</field>
+            <field name="ghi_chu">Lương tháng 1 năm 2026</field>
+        </record>
+    </data>
+</odoo>

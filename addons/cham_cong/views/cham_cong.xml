@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="cham_cong_form" model="ir.ui.view">
+            <field name="name">cham_cong.form</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <form string="Chấm Công">
+                    <sheet>
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="nhan_vien_id" required="1"/>
+                                <field name="ngay" required="1"/>
+                            </group>
+                            <group string="Thời gian">
+                                <field name="gio_vao" required="1" widget="float_time"/>
+                                <field name="gio_ra" required="1" widget="float_time"/>
+                                <field name="so_gio_lam" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <group string="Trạng thái">
+                                <field name="trang_thai" readonly="1"/>
+                                <field name="di_muon" readonly="1"/>
+                                <field name="ve_som" readonly="1"/>
+                            </group>
+                            <group string="Chi tiết">
+                                <field name="thoi_gian_di_muon" readonly="1" widget="float_time"/>
+                                <field name="thoi_gian_ve_som" readonly="1" widget="float_time"/>
+                                <field name="ot_gio" readonly="1"/>
+                                <field name="ot_tien" readonly="1"/>
+                                <field name="tru_muon" readonly="1"/>
+                                <field name="tru_vesom" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <group>
+                            <field name="ghi_chu" nolabel="1" placeholder="Nhập ghi chú..."/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="cham_cong_tree" model="ir.ui.view">
+            <field name="name">cham_cong.tree</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách chấm công">
+                    <field name="ngay"/>
+                    <field name="nhan_vien_id"/>
+                    <field name="gio_vao"/>
+                    <field name="gio_ra"/>
+                    <field name="so_gio_lam" sum="Tổng"/>
+                    <field name="trang_thai"/>
+                    <field name="ghi_chu"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="cham_cong_search" model="ir.ui.view">
+            <field name="name">cham_cong.search</field>
+            <field name="model">cham_cong</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm chấm công">
+                    <field name="nhan_vien_id"/>
+                    <field name="ngay"/>
+                    <field name="trang_thai"/>
+                    <separator/>
+                    <filter string="Có mặt" name="co_mat" domain="[('trang_thai', '=', 'co_mat')]"/>
+                    <filter string="Đi muộn" name="di_muon" domain="[('di_muon', '=', True)]"/>
+                    <filter string="Về sớm" name="ve_som" domain="[('ve_som', '=', True)]"/>
+                    <separator/>
+                    <filter string="Hôm nay" name="today" domain="[('ngay', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Tuần này" name="this_week" 
+                            domain="[('ngay', '&gt;=', context_today().strftime('%Y-%m-%d')), ('ngay', '&lt;', (context_today() + relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                    <separator/>
+                    <group expand="0" string="Nhóm theo">
+                        <filter string="Nhân viên" name="group_nhan_vien" domain="[]" context="{'group_by': 'nhan_vien_id'}"/>
+                        <filter string="Trạng thái" name="group_trang_thai" domain="[]" context="{'group_by': 'trang_thai'}"/>
+                        <filter string="Ngày" name="group_ngay" domain="[]" context="{'group_by': 'ngay'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="cham_cong_action" model="ir.actions.act_window">
+            <field name="name">Chấm Công</field>
+            <field name="res_model">cham_cong</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo bản ghi chấm công mới
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>
