@@ -95,7 +95,6 @@ Ngoài các chức năng có sẵn từ nền tảng ERP ban đầu, hệ thốn
 git clone https://github.com/nvtan208/TTDN-16-02-N10.git
 ```
 
-> 💡 Bạn có thể thay đổi URL trên bằng repository GitHub cá nhân của mình sau khi fork.
 
 #### 4.1.2. Cài đặt các thư viện phụ thuộc
 
