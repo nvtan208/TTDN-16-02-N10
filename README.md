@@ -93,7 +93,7 @@ git clone https://github.com/nvtan208/TTDN-16-02-N10.git
 ## 🖼️ 6. Poster hệ thống
 
 <p align="center">
-  <img src="docs/logo/poster.png" alt="Poster hệ thống ERP" width="900"/>
+  <img src="docs/logo/Poster.png" alt="Poster hệ thống ERP" width="900"/>
 </p>
 
 ---
